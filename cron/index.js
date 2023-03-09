@@ -1,13 +1,11 @@
 const cron = require("node-cron");
-const {followUpMailing} =require("../models/logicModels/followup")
-
+const { followUpMailing } = require("../models/logicModels/followup");
 
 const setupAllCronJobs = () => {
-    cron.schedule("*/30 * * * *", () => {
-      followUpMailing();
-    });
-  
-  };
+  //every 30seconds
+  cron.schedule("*/30 * * * *", () => {
+    followUpMailing();
+  });
+};
 
-
-module.exports={setupAllCronJobs   }
+module.exports = { setupAllCronJobs };

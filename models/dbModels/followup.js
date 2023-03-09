@@ -11,11 +11,12 @@ const saveFollowUpInDb = (custId, orderToken, scheduleDate, status) => {
     });
 
     return followUps.save();
-  }
+  } else throw new Error("Invalid parameter");
 };
 
 const getFollowUp = async (parameter) => {
   if (checkObjectSanity(parameter)) return followUpModel.find(parameter);
+  else throw new Error("Invalid parameter");
 };
 
 const updateFollowUp = (selectionCriteria, updateCritera) => {
@@ -23,10 +24,10 @@ const updateFollowUp = (selectionCriteria, updateCritera) => {
     checkObjectSanity(selectionCriteria) &&
     checkObjectSanity(updateCritera)
   ) {
-
     return followUpModel
-      .updateMany(selectionCriteria, updateCritera,{multi:true}).catch(e=>console.log(e))
-  }
+      .updateMany(selectionCriteria, updateCritera, { multi: true })
+      .catch((e) => console.log(e));
+  } else throw new Error("Invalid parameter");
 };
 
 module.exports = { saveFollowUpInDb, getFollowUp, updateFollowUp };
