@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 const routes = require("./controller");
 const {dbInit}=require("./models/dbModels")
+const {setupAllCronJobs } =require("./cron")
 
 
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -15,6 +16,7 @@ app.use(routes);
 
 dbInit()
 
+setupAllCronJobs()
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });
